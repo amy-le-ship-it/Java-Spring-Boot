@@ -16,6 +16,11 @@ public class Product {
     private long sold;
     private String factory;
     private String target;
+
+    // One-to-Many relationship with Order_Detail
+    @OneToMany(mappedBy = "product") // 'product' refers to the inverse
+    private java.util.List<Order_Detail> orderDetails;
+
     // Getters and Setters 
     public Long getId() {
         return id;

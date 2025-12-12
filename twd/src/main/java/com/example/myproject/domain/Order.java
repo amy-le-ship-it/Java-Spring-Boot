@@ -9,11 +9,15 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private double totalPrice;
-    
+
     // Many-to-One relationship with User
     @ManyToOne
     @JoinColumn(name = "user_id") // Foreign key column in orders table
     private User user;
+
+    // One-to-Many relationship with Order_Detail
+    @OneToMany(mappedBy = "order")
+    private java.util.List<Order_Detail> orderDetails;
 
     public Long getId() {
         return id;
