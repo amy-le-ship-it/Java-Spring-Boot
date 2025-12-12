@@ -1,0 +1,33 @@
+body {
+    background: #111;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    padding: 20px;
+}
+
+.container {
+    width: 50%;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+    color: #0ff;
+}
+
+#song-list {
+    list-style: none;
+    padding: 0;
+}
+
+#song-list li {
+    padding: 10px;
+    margin-bottom: 5px;
+    background: #222;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#song-list li:hover {
+    background: #333;
+}
