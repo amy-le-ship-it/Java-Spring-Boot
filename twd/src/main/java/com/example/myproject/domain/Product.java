@@ -16,6 +16,7 @@ public class Product {
     private long sold;
     private String factory;
     private String target;
+    // Getters and Setters 
     public Long getId() {
         return id;
     }
