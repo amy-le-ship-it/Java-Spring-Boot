@@ -15,6 +15,15 @@ public class User {
     private String phoneNumber;
     private String profilePicture; 
 
+    // Many-to-One relationship with Role
+    @ManyToOne
+    @JoinColumn(name = "role_id") // Foreign key column in users table
+    private Role role; 
+
+    // One-to-Many relationship with Order
+    @OneToMany(mappedBy = "user")
+    private java.util.List<Order> orders;
+
     // Getters and Setters
     // roleId
     public Long getId() {

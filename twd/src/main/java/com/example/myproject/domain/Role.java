@@ -1,6 +1,7 @@
 package com.example.myproject.domain;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
@@ -10,6 +11,10 @@ public class Role {
     private Long id;
     private String name;
     private String description;
+
+    // One-to-Many relationship with User
+    @OneToMany(mappedBy = "role") // 'role' refers to the inverse side
+    private List<User> users;
 
     // Getters and Setters
     public Long getId() {
