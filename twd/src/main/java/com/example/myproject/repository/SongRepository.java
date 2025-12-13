@@ -1,9 +1,0 @@
-package com.example.myproject.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.example.myproject.model.Song;
-
-public interface SongRepository extends JpaRepository<Song, Long> {
-    
-}
