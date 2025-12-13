@@ -30,7 +30,9 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
   <body class="sb-nav-fixed">
     <!-- Header -->
+    <jsp:include page="../layout/header.jsp" />
     <div id="layoutSidenav">
+        <jsp:include page="../layout/sidebar.jsp" />
       <div id="layoutSidenav_content">
         <main>
           <div class="container-fluid px-4">
@@ -614,6 +616,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
             </div>
           </div>
         </main>
+        <jsp:include page="../layout/footer.jsp" />
       </div>
     </div>
     <script

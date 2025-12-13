@@ -12,8 +12,10 @@ import com.example.myproject.service.UserService;
 
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.*;;
 
+@Controller
 public class UserController {
     private UserService userService;
 
@@ -31,6 +33,8 @@ public class UserController {
     @RequestMapping("/admin/user")
     public String getUserPage(Model model) {
         List<User> users = this.userService.getAllUser();
+        System.out.println("Users: " + users.size());
+        users.forEach(System.out::println);
         model.addAttribute("users", users);
         return "admin/user/show";
     }

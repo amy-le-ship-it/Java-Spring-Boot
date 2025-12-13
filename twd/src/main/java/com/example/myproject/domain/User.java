@@ -13,12 +13,12 @@ public class User {
     private String password;
     private String address;
     private String phoneNumber;
-    private String profilePicture; 
+    private String profilePicture;
 
     // Many-to-One relationship with Role
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "role_id") // Foreign key column in users table
-    private Role role; 
+    private Role role;
 
     // One-to-Many relationship with Order
     @OneToMany(mappedBy = "user")
@@ -80,6 +80,14 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
