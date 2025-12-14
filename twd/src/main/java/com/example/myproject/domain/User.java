@@ -95,4 +95,9 @@ public class User {
         return "User [id=" + id + ", fullName=" + fullName + ", email=" + email + ", password=" + password
                 + ", address=" + address + ", phoneNumber=" + phoneNumber + ", profilePicture=" + profilePicture + "]";
     }
+
+    public void setAvatar(String avatar) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setAvatar'");
+    }
 }
