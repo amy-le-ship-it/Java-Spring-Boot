@@ -92,13 +92,20 @@ public class UserController {
   }
 
   @PostMapping("/admin/user/update") // Method POST
-  public String postUpdateUser(Model model, @ModelAttribute("newUser") User newUser) {
-    User currenUser = this.userService.getByUserId(newUser.getId()); // lúc này bên phía view đã có id rồi
+  public String postUpdateUser(Model model, @ModelAttribute("newUser") User hoidanit,
+      @RequestParam("hoidanitFile") MultipartFile file) {
+    User currenUser = this.userService.getByUserId(hoidanit.getId()); // lúc này bên phía view đã có id rồi
     if (currenUser != null) {
       // System.out.println("run here");
-      currenUser.setAddress(newUser.getAddress());
-      currenUser.setFullName(newUser.getFullName());
-      currenUser.setPhoneNumber(newUser.getPhoneNumber());
+      currenUser.setAddress(hoidanit.getAddress());
+      currenUser.setFullName(hoidanit.getFullName());
+      currenUser.setPhoneNumber(hoidanit.getPhoneNumber());
+
+      currenUser.setRole(hoidanit.getRole());
+      if (file != null && !file.isEmpty()) {
+        String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+        currenUser.setProfilePicture(avatar);
+      }
 
       // lưu xuống database: (fix bug here)
       this.userService.handleSaveUser(currenUser);
