@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.security.crypto.password.*;
 
 import com.example.myproject.domain.User;
 import com.example.myproject.service.UploadService;
@@ -26,11 +26,13 @@ import org.springframework.ui.*;
 public class UserController {
   private final UserService userService;
   private final UploadService uploadService;
+  private final PasswordEncoder PasswordEncoder;
 
 
-  public UserController(UserService userService, UploadService uploadService) {
+  public UserController(UserService userService, UploadService uploadService, PasswordEncoder passwordEncoder) {
     this.userService = userService;
     this.uploadService = uploadService;
+    this.PasswordEncoder = passwordEncoder;
   }
 
   @RequestMapping("/")
@@ -73,6 +75,12 @@ public class UserController {
     // this.userService.handleSaveUser(newUser);
 
     String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+    String hashPassword = this.PasswordEncoder.encode(hoidanit.getPassword());
+
+    hoidanit.setAvatar(avatar);
+    hoidanit.setPassword(hashPassword);
+    hoidanit.setRole(this.userService.getRoleByName(hoidanit.getRole().getName()));
+    this.userService.handleSaveUser(hoidanit);
     return "redirect:/admin/user";
   }
 

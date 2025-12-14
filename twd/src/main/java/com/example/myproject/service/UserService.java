@@ -2,7 +2,9 @@ package com.example.myproject.service;
 
 import org.springframework.stereotype.Service;
 
+import com.example.myproject.domain.Role;
 import com.example.myproject.domain.User;
+import com.example.myproject.repository.RoleRepository;
 import com.example.myproject.repository.UserRepository;
 
 import java.util.List;
@@ -10,9 +12,11 @@ import java.util.List;
 @Service
 public class UserService {
   private final UserRepository userRepository;
+  private final RoleRepository roleRepository;
 
-  public UserService(UserRepository userRepository) {
+  public UserService(UserRepository userRepository, RoleRepository roleRepository) {
     this.userRepository = userRepository;
+    this.roleRepository = roleRepository;
   }
 
   public List<User> getAllUser() {
@@ -40,5 +44,9 @@ public class UserService {
   // Delete User
   public void deleteByUser(long id) {
     this.userRepository.deleteById(id);
+  }
+
+  public Role getRoleByName(String name) {
+    return this.roleRepository.findByName(name);
   }
 }
